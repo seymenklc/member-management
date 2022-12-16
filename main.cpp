@@ -4,9 +4,6 @@
 
 using namespace std;
 
-// variables
-const int tableSize = 10;
-
 struct member
 {
    string birthDate;
@@ -14,6 +11,9 @@ struct member
    string surname;
    member *next;
 };
+
+// variables
+const int tableSize = 10;
 
 int Hash(string key)
 {
@@ -143,7 +143,7 @@ void findMember(string name, member *hashTable[])
    }
    else
    {
-      if (surname == "exit")
+      if (name == "exit")
          return;
       cout << "---------------------" << endl;
       cout << "The member with name " << name << " was not found" << endl;
@@ -158,6 +158,8 @@ void removeMember(string name, member *hashTable[])
    member *prevMember1; // pointer to the previous member
    member *prevMember2;
 
+   if (name == "exit")
+      return;
    // If the index is empty
    if (hashTable[index]->name == "" && hashTable[index]->surname == "")
    {
@@ -253,7 +255,7 @@ void updateMember(string name, member *hashTable[])
    }
    else
    {
-      if (surname == "exit")
+      if (name == "exit")
          return;
       cout << "---------------------" << endl;
       cout << "The member with name " << name << " was not found" << endl;
@@ -312,6 +314,7 @@ void resetTable(member *hashTable[])
 int main(int argc, char *argv[])
 {
    string inputStr = "";
+   int choice;
 
    // initialize the hash table
    member *hashTable[tableSize];
@@ -328,14 +331,82 @@ int main(int argc, char *argv[])
    addMember("ramazan", "bekar", "2008", hashTable);
    addMember("mehmet", "yilmaz", "2009", hashTable);
 
+   // menu items
+   cout << "---------------------" << endl;
+   cout << "Mock Members Already Added With Add Member Func" << endl;
+   cout << "1. Find a member" << endl;
+   cout << "2. Remove a member" << endl;
+   cout << "3. Update a member" << endl;
+   cout << "4. List all members" << endl;
+   cout << "5. List members in an index" << endl;
+   cout << "6. Reset the table" << endl;
+   cout << "7. Exit" << endl;
+   cout << "---------------------" << endl;
+
+   cout << "Enter your choice: ";
+   cin >> choice;
+
+   switch (choice)
+   {
+   case 1:
+      while (inputStr != "exit")
+      {
+         cout << "Enter a name to search for: ";
+         cin >> inputStr;
+         findMember(inputStr, hashTable);
+      }
+
+      cout << "Enter your choice: ";
+      cin >> choice;
+   case 2:
+      while (inputStr != "exit")
+      {
+         cout << "Enter a name to remove from the table: ";
+         cin >> inputStr;
+         removeMember(inputStr, hashTable);
+      }
+
+      cout << "Enter your choice: ";
+      cin >> choice;
+   case 3:
+      while (inputStr != "exit")
+      {
+         cout << "Enter a name to update: ";
+         cin >> inputStr;
+         updateMember(inputStr, hashTable);
+      }
+
+      cout << "Enter your choice: ";
+      cin >> choice;
+   case 4:
+      printTable(hashTable);
+
+      cout << "Enter your choice: ";
+      cin >> choice;
+   case 5:
+      for (int i = 0; i < tableSize; i++)
+         listMembersInIndex(i, hashTable);
+
+      cout << "Enter your choice: ";
+      cin >> choice;
+   case 6:
+      resetTable(hashTable);
+
+      cout << "Enter your choice: ";
+      cin >> choice;
+   case 7:
+      cout << "Exiting..." << endl;
+      break;
+   }
+
    /* LIST ALL MEMBERS WITH INDEXES */
    // printTable(hashTable);
 
-   /* LIST ALL MEMBERS IN AN INDEX */
-   for (int i = 0; i < tableSize; i++)
-      listMembersInIndex(i, hashTable);
+   // /* LIST ALL MEMBERS IN AN INDEX */
+   // for (int i = 0; i < tableSize; i++)
+   //    listMembersInIndex(i, hashTable);
 
-   /* REMOVE A MEMBER */
+   /* Search A MEMBER */
    // while (inputStr != "exit")
    // {
    //    cout << "Enter a name to search for: ";
