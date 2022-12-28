@@ -13,7 +13,7 @@ struct member
 };
 
 // variables
-const int tableSize = 10;
+const int tableSize = 50;
 
 int Hash(string key)
 {
@@ -321,7 +321,7 @@ int main(int argc, char *argv[])
    initTable(hashTable);
 
    // ADD MEMBERS TO THE HASH TABLE
-   addMember("adem", "yilmaz", "2001", hashTable);
+   addMember("seda", "kilinc", "2001", hashTable);
    addMember("seymen", "kilic", "2002", hashTable);
    addMember("aykut", "denk", "2002", hashTable);
    addMember("elif", "ozan", "2003", hashTable);
@@ -398,40 +398,6 @@ int main(int argc, char *argv[])
       cout << "Exiting..." << endl;
       break;
    }
-
-   /* LIST ALL MEMBERS WITH INDEXES */
-   // printTable(hashTable);
-
-   // /* LIST ALL MEMBERS IN AN INDEX */
-   // for (int i = 0; i < tableSize; i++)
-   //    listMembersInIndex(i, hashTable);
-
-   /* Search A MEMBER */
-   // while (inputStr != "exit")
-   // {
-   //    cout << "Enter a name to search for: ";
-   //    cin >> inputStr;
-   //    findMember(inputStr, hashTable);
-   // }
-
-   /* REMOVE A MEMBER */
-   // while (inputStr != "exit")
-   // {
-   //    cout << "Enter a name to remove from the table: ";
-   //    cin >> inputStr;
-   //    removeMember(inputStr, hashTable);
-   // }
-
-   /* UPDATE A MEMBER */
-   // while (inputStr != "exit")
-   // {
-   //    cout << "Enter a name to update: ";
-   //    cin >> inputStr;
-   //    updateMember(inputStr, hashTable);
-   // }
-
-   /* RESET THE TABLE */
-   // resetTable(hashTable);
 
    return 0;
 }
